@@ -4,9 +4,8 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'smart-root',
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  template: '<router-outlet/>'
 })
 export class AppComponent {
-  title = 'tareas-app';
 }
