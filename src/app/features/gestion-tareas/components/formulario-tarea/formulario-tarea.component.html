@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Crear tipo origami</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{ tarea ? 'Actualizar':'Crear' }} tarea</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -61,7 +61,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="cerrar()">Cancelar</button>
         <button type="button" class="btn btn-outline-primary" (click)="ejecutar()" [disabled]="deshabilitarFormulario">
-          Guardar
+          {{ tarea ? 'Actualizar':'Crear' }}
         </button>
       </div>
     </div>
