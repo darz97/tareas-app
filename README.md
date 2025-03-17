@@ -36,6 +36,31 @@ La carpeta `Shared` almacena **componentes, pipes, directivas y utilidades** reu
 
 ---
 
+## ⚙️ Lógica del Negocio
+
+Este proyecto permite a los usuarios gestionar tareas con las siguientes funcionalidades principales:
+
+- **Ver una lista de tareas**.
+- **Agregar una nueva tarea** con título, descripción y estado.
+- **Marcar una tarea como completada**.
+- **Eliminar una tarea**.
+
+### 🔹 Estados de las tareas
+
+Además de los estados básicos, se optó por agregar múltiples estados para una mejor organización:
+
+- **Pendiente**
+- **En progreso**
+- **Completada**
+- **Cancelada**
+
+📌 **Reglas de negocio**:
+
+- Se realizó una validación en el formulario para que los campos **título, estado y descripción** sean obligatorios.
+- Si una tarea está en estado **completada o cancelada**, no podrá ser editada.
+
+---
+
 ## 📦 Dependencias Utilizadas
 
 ### 🔹 **SweetAlert2** (Mensajes Emergentes)
@@ -122,3 +147,4 @@ Para desplegar la aplicación, se utilizó **Firebase Hosting**, lo que permite:
 Este proyecto sigue una arquitectura modular bien estructurada (**Core, Features, Shared**) que facilita la escalabilidad y mantenimiento. Se integraron dependencias clave como **SweetAlert2**, **ngx-spinner**, **Bootstrap 5** y **Firebase**, asegurando una experiencia de usuario fluida y una implementación eficiente del backend.
 
 Además, el despliegue con **Firebase Hosting** simplifica la publicación de la aplicación sin necesidad de infraestructura adicional. 🚀
+
