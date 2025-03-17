@@ -1,1 +1,70 @@
-<p>gestion-tareas works!</p>
+<div class="row mb-3 mt-1">
+  <div class="col-sm-6 col-md-6 col-lg-9">
+    <h5>Tareas</h5>
+  </div>
+
+
+  <div class="col-sm-6 col-md-4 col-lg-2">
+    <select class="form-select form-select-sm" [formControl]="estadoTarea">
+      <option value="">Todos</option>
+      <option value="PENDIENTE">Pendiente</option>
+      <option value="EN_PROGRESO">En progreso</option>
+      <option value="COMPLETADA">Completada</option>
+      <option value="CANCELADA">Cancelada</option>
+    </select>
+  </div>
+
+  <div class="col-sm-6 col-md-2 col-lg-1">
+    <div class="d-grid">
+      <button type="button" class="btn btn-sm btn-success" (click)="crear()">
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row mb-2">
+  <div class="col">
+    <span class="status-circle bg-success"></span> <small>Completada</small>
+    <span class="status-circle bg-danger ms-3"></span> <small>Cancelada</small>
+    <span class="status-circle bg-secondary ms-3"></span> <small>Pendiente</small>
+    <span class="status-circle bg-warning ms-3"></span> <small>En progreso</small>
+  </div>
+</div>
+
+<hr class="mt-0">
+
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Titulo</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Estado</th>
+      <th scope="col" class="text-center">Opciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tarea of tareas() | tareaPorEstado: estadoTarea.value; let i = index">
+      <th scope="row">
+        <span class="status-circle" [ngClass]="tarea.estado | estadoTarea"></span>
+      </th>
+      <td>{{ tarea.titulo }}</td>
+      <td>{{ tarea.descripcion }}</td>
+      <td>{{ tarea.estado | nombreEstado }}</td>
+      <td class="text-center">
+        <i class="fa fa-edit me-2 text-primary" (click)="crear(tarea)"></i>
+        <i class="fa fa-trash text-danger" (click)="eliminar(tarea.id)"></i>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Componente de formulario -->
+<smart-formulario-tarea [tarea]="tarea" (crear)="guardar($event)" (actualizar)="actualizar($event)">
+</smart-formulario-tarea>
