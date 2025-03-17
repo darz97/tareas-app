@@ -40,31 +40,32 @@
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Titulo</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Estado</th>
-      <th scope="col" class="text-center">Opciones</th>
-    </tr>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Estado</th>
+        <th scope="col" class="text-center">Opciones</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let tarea of tareas() | tareaPorEstado: estadoTarea.value; let i = index">
-      <th scope="row">
-        <span class="status-circle" [ngClass]="tarea.estado | estadoTarea"></span>
-      </th>
-      <td>{{ tarea.titulo }}</td>
-      <td>{{ tarea.descripcion }}</td>
-      <td>{{ tarea.estado | nombreEstado }}</td>
-      <td class="text-center">
-        <i class="fa fa-edit me-2 text-primary" (click)="crear(tarea)"></i>
-        <i class="fa fa-trash text-danger" (click)="eliminar(tarea.id)"></i>
-      </td>
-    </tr>
+      @for (tarea of tareas() | tareaPorEstado: estadoTarea.value; track tarea; let i = $index) {
+        <tr>
+          <th scope="row">
+            <span class="status-circle" [ngClass]="tarea.estado | estadoTarea"></span>
+          </th>
+          <td>{{ tarea.titulo }}</td>
+          <td>{{ tarea.descripcion }}</td>
+          <td>{{ tarea.estado | nombreEstado }}</td>
+          <td class="text-center">
+            <i class="fa fa-edit me-2 text-primary" (click)="crear(tarea)"></i>
+            <i class="fa fa-trash text-danger" (click)="eliminar(tarea.id)"></i>
+          </td>
+        </tr>
+      }
     </tbody>
   </table>
 </div>
 
-<!-- Componente de formulario -->
-<smart-formulario-tarea [tarea]="tarea" (crear)="guardar($event)" (actualizar)="actualizar($event)">
-</smart-formulario-tarea>
+
+<smart-formulario-tarea [tarea]="tarea" (crear)="guardar($event)" (actualizar)="actualizar($event)" />

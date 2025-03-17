@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Tarea } from '@gestion-tareas/models/tarea';
 import { TareaDto } from '@gestion-tareas/models/tarea-dto';
@@ -7,7 +7,7 @@ import { Modal } from '@shared/util/modal';
 
 @Component({
   selector: 'smart-formulario-tarea',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './formulario-tarea.component.html',
   standalone: true,
   styleUrl: './formulario-tarea.component.scss'
