@@ -1,59 +1,124 @@
-# TareasApp
+# 📌 Proyecto de Gestión de Tareas
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+## 🏗 Arquitectura del Proyecto
 
-## Development server
+Este proyecto sigue una **arquitectura modular** basada en tres capas principales: **Core**, **Features** y **Shared**. Esta arquitectura permite una mejor organización, escalabilidad y reutilización del código.
 
-To start a local development server, run:
+### 🔹 **Core**
 
-```bash
-ng serve
-```
+La carpeta `Core` contiene toda la lógica central del proyecto. En este caso, incluye componentes globales como el `header` y el `main`, además de:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Si el proyecto escala, esta carpeta también se encargará de contener todos estos elementos y otros aspectos fundamentales del sistema, asegurando una arquitectura bien organizada y mantenible.
 
-## Code scaffolding
+- **Servicios globales**: Servicios compartidos que manejan lógica de negocio.
+- **Interceptors**: Manejo de peticiones HTTP y autenticación.
+- **Guardas de rutas**: Protege ciertas rutas según el estado del usuario.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+📌 **Beneficio**: Separa la lógica de negocio para que pueda ser usada en múltiples módulos sin duplicación de código.
 
-```bash
-ng generate component component-name
-```
+### 🔹 **Features**
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Aquí se agrupan los diferentes módulos funcionales de la aplicación. En este caso, cada módulo representa una **funcionalidad específica**:
 
-```bash
-ng generate --help
-```
+- **Gestión de Tareas** (`gestion-tareas`): Contiene componentes y servicios relacionados con la administración de tareas.
 
-## Building
+📌 **Beneficio**: Permite escalar el proyecto fácilmente, agregando o eliminando módulos sin afectar el código central.
 
-To build the project run:
+### 🔹 **Shared**
 
-```bash
-ng build
-```
+La carpeta `Shared` almacena **componentes, pipes, directivas y utilidades** reutilizables en toda la aplicación. Incluye:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- **Componentes compartidos**: Como formularios reutilizables, botones personalizados, etc.
+- **Pipes**: Transformaciones personalizadas.
+- **Utilidades**: Funciones comunes como alertas o manejo de modales.
 
-## Running unit tests
+📌 **Beneficio**: Evita la repetición de código y mejora la mantenibilidad del proyecto.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## 📦 Dependencias Utilizadas
 
-## Running end-to-end tests
+### 🔹 **SweetAlert2** (Mensajes Emergentes)
 
-For end-to-end (e2e) testing, run:
+- Se utiliza para mostrar alertas elegantes y personalizadas.
+- Permite diálogos de confirmación y notificaciones visualmente atractivas.
+- Se integra fácilmente con Angular.
 
-```bash
-ng e2e
-```
+📌 **Instalación**: `npm install sweetalert2`
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### 🔹 **ngx-spinner** (Indicador de Carga)
 
-## Additional Resources
+- Se usa para mostrar un `spinner` cuando se realizan operaciones como carga de datos o peticiones HTTP.
+- Mejora la experiencia del usuario indicando que la aplicación está procesando una acción.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+📌 **Instalación**: `npm install ngx-spinner`
+
+### 🔹 **Bootstrap 5** (Diseño y Estilos)
+
+- Se usa para estilizar la aplicación de manera responsiva y con diseño moderno.
+- Facilita la construcción de interfaces con un sistema de grillas y componentes reutilizables.
+
+📌 **Instalación**: `npm install bootstrap`
+
+### 🔹 **Firebase** (Backend as a Service)
+
+- Se utiliza Firebase como backend para la gestión de datos.
+- Proporciona autenticación, almacenamiento en Firestore y hosting.
+- Se eligió debido a la experiencia previa del equipo con esta herramienta.
+
+📌 **Instalación**: `npm install firebase @angular/fire`
+
+---
+
+## ☁️ Backend as a Service: **Firebase**
+
+El backend de esta aplicación está completamente basado en **Firebase**, lo que permite:
+
+- **Base de datos en tiempo real** con **Firestore**.
+- **Autenticación segura** con Google, correo/contraseña, etc.
+- **Hosting integrado** para desplegar la aplicación sin necesidad de servidores adicionales.
+
+📌 **Razón de uso**: Se seleccionó Firebase por su facilidad de integración con Angular y por los conocimientos previos del equipo.
+
+---
+
+## 🚀 Despliegue con Firebase
+
+Para desplegar la aplicación, se utilizó **Firebase Hosting**, lo que permite:
+
+- **Despliegue rápido** con un solo comando.
+- **Certificados SSL gratuitos** incluidos.
+- **Integración con CI/CD** para automatizar actualizaciones.
+
+### 🔹 **Pasos para desplegar**
+
+1. Instalar Firebase CLI:
+   ```sh
+   npm install -g firebase-tools
+   ```
+2. Iniciar sesión en Firebase:
+   ```sh
+   firebase login
+   ```
+3. Inicializar el proyecto en Firebase:
+   ```sh
+   firebase init
+   ```
+4. Construir el proyecto en Angular:
+   ```sh
+   ng build --prod
+   ```
+5. Desplegar en Firebase:
+   ```sh
+   firebase deploy
+   ```
+
+📌 **Razón de uso**: Se utilizó Firebase Hosting porque se está aprovechando todo el kit de herramientas de Firebase para el backend.
+
+---
+
+## 📜 **Conclusión**
+
+Este proyecto sigue una arquitectura modular bien estructurada (**Core, Features, Shared**) que facilita la escalabilidad y mantenimiento. Se integraron dependencias clave como **SweetAlert2**, **ngx-spinner**, **Bootstrap 5** y **Firebase**, asegurando una experiencia de usuario fluida y una implementación eficiente del backend.
+
+Además, el despliegue con **Firebase Hosting** simplifica la publicación de la aplicación sin necesidad de infraestructura adicional. 🚀
